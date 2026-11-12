@@ -12,7 +12,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/tagline.png">
-    <img src="assets/tagline-black.png" alt="Give Muse its own eyes" width="600">
+    <img src="assets/tagline-black.png" alt="Give Muse its own eyes" width="640">
   </picture>
 </p>
 

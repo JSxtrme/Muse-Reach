@@ -119,3 +119,8 @@ Owner asked for more social media platforms and more international shopping site
 ## v0.2.2 — remove Changelog section from README (2026-11-12 ~23:08 IST)
 
 - The Changelog section added in v0.2.1 was NOT in the README before — I added it, misunderstanding the owner. He only meant the commit message at the top of the repo page (GitHub's latest-commit bar). Removed the section; the README is back to its pre-v0.2.1 shape. Changelog for each update lives in the commit message itself, and the detailed test notes live here in TEST-REPORT.md.
+
+## v0.2.3 — tighten tagline crop (2026-11-12 ~23:10 IST)
+
+- Owner: too much padding in the tagline image, wasted space. Cause: the first crop used the raw alpha bbox, which caught near-invisible dust specks (alpha 1-8) scattered across the whole 2172x724 file, so the crop was 2145x613 while the real glyphs are only y 312-416 (105px tall).
+- Fix: alpha < 30 zeroed out (kills the dust), re-cropped tight to the real glyphs + 12px padding -> 2101x128 (16.4:1). At 640 wide the strip is now 38px tall instead of 171px, same text size as before. Both white and black twins regenerated and verified visually.

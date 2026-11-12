@@ -115,3 +115,7 @@ Owner asked for more social media platforms and more international shopping site
 - Supplied tagline image "GIVE MUSE IT'S OWN EYES" (Futuristic_White_Typographic_Banner.png, 2172x724, white on transparent) cropped tight to its alpha bbox + 24px padding (2145x613) and saved as `assets/tagline.png`. A black twin with the same alpha was made for light mode (`assets/tagline-black.png`). Both verified visually on black and white composites — clean, no specks.
 - README now shows the tagline in place of the second logo, via `<picture>`: dark mode gets the white tagline, light mode gets the black one. The banner logo already switched correctly (dark -> banner-white.png, light -> banner.png) — verified, unchanged.
 - New Changelog section at the top of the README: v0.2.0 entry carries the last update's commit message, v0.2.1 changelog below it.
+
+## v0.2.2 — remove Changelog section from README (2026-11-12 ~23:08 IST)
+
+- The Changelog section added in v0.2.1 was NOT in the README before — I added it, misunderstanding the owner. He only meant the commit message at the top of the repo page (GitHub's latest-commit bar). Removed the section; the README is back to its pre-v0.2.1 shape. Changelog for each update lives in the commit message itself, and the detailed test notes live here in TEST-REPORT.md.

@@ -25,22 +25,6 @@
 
 ---
 
-## Changelog
-
-### v0.2.0 — 14 new Muse-first-only channels (tiktok, threads, telegram, discord, pinterest, bluesky, mastodon, snapchat, ebay, aliexpress, etsy, shopee, temu, mercadolibre)
-
-- 30 channels total. All 14 are Muse-first-only — Agent Reach never had them, and each one was live-tested before being listed.
-- Working: telegram, pinterest, bluesky, ebay, aliexpress, etsy, shopee, temu. Partial: tiktok, discord, mastodon, snapchat, mercadolibre. Unproven: threads (social search returned 0 posts).
-- The router refuses to fetch any of the 14 itself — it prints the Muse route instead. Router is v0.2.0; the shopping route key is now `shopping_rule`, covering all 8 shopping channels.
-
-### v0.2.1 — Tagline image, light/dark switching, duplicate logo removed
-
-- Removed the second standalone logo below the intro — the logo is already in the banner above it.
-- Added the "GIVE MUSE IT'S OWN EYES" tagline image in its place. White in dark mode, black in light mode.
-- The banner logo already switched correctly (white in dark mode, black in light mode) — verified, unchanged.
-
----
-
 ## Why Muse Reach exists
 
 Muse already has web search, page reading, social search, and connectors. What it doesn't have is a single place that decides *which* of those to use for each site — and what to do when that site says no.

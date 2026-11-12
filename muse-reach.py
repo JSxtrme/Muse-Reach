@@ -25,7 +25,7 @@ import shutil
 import subprocess
 import sys
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 # channel -> {muse_first, fallback, login, status, actions}
 CHANNELS = {
@@ -141,6 +141,104 @@ CHANNELS = {
         "status": "NEW channel (Agent Reach never had one). Same honest route as amazon; live price/stock ONLY from a live browser task or Meta Catalog. Verified 2026-11-12: Meta Catalog returned a real Flipkart Plus 223 listing (sale Rs 1,199, 3.9 stars, 55,374 reviews); browser.search also returns real Flipkart listings (crawled 2-5 days ago, not live).",
         "actions": ["search", "read"],
     },
+    "tiktok": {
+        "muse_first": "browser.search (site:tiktok.com) for public videos; browser.open on a video URL returned by search",
+        "fallback": "none - Agent Reach has no tiktok channel; no direct fetch (app/login wall)",
+        "login": "none to find public videos via search; watching the feed / full video needs the app or login",
+        "status": "PARTIAL, verified 2026-11-12: browser.search returned real public TikTok videos (e.g. @voxy.us, crawled 2-11 days ago). Cannot play or read a full video / feed without the app or login.",
+        "actions": ["search", "read"],
+    },
+    "threads": {
+        "muse_first": "social.search (threads platform), then browser.search",
+        "fallback": "none - Agent Reach has no threads channel",
+        "login": "none for public posts via search; full feed needs login",
+        "status": "UNPROVEN 2026-11-12: social.search (threads) returned 0 posts for 3 queries (Minecraft, anime edits, tech gadgets). Not conclusively broken - may be query-dependent - but no result obtained yet.",
+        "actions": ["search", "read"],
+    },
+    "telegram": {
+        "muse_first": "browser.search (site:t.me) for public channels; browser.open on a t.me/s/ web-view URL returned by search",
+        "fallback": "none - Agent Reach has no telegram channel",
+        "login": "none for public channels (t.me/s/ web view is public); private chats/groups need login",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real public channel posts with full text (e.g. AniDL, AnimeTm, crawled 2-4 days ago). Public channels only.",
+        "actions": ["search", "read"],
+    },
+    "discord": {
+        "muse_first": "browser.search for public server listings (discodus.com, discordbotlist.com); browser.open on a listing URL returned by search",
+        "fallback": "none - Agent Reach has no discord channel; discord.com messages need login",
+        "login": "none to find public servers; reading a server / messages needs a Discord login",
+        "status": "PARTIAL, verified 2026-11-12: search returned real public server listings with member counts and invite links (e.g. Hypixel Bedwars, 74,927 members). No direct discord.com content; messages need login.",
+        "actions": ["search", "read"],
+    },
+    "pinterest": {
+        "muse_first": "browser.search (site:pinterest.com) for pins and idea pages",
+        "fallback": "none - Agent Reach has no pinterest channel",
+        "login": "none for public pins/boards via search; full feed and saving need login",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real pin and idea pages with titles and topics (anime wallpapers, crawled 1-3 days ago for the freshest). Public content only.",
+        "actions": ["search", "read"],
+    },
+    "bluesky": {
+        "muse_first": "browser.search (site:bsky.app) for public posts; browser.open on a post URL returned by search; per-profile RSS feeds exist (bsky.app/profile/<handle>/rss)",
+        "fallback": "none - Agent Reach has no bluesky channel; direct public API (public.api.bsky.app) returned HTTP 403 from this VM (egress proxy), so do not call it from here",
+        "login": "none for public posts",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real public posts with full text, dates and likes (e.g. @gamingonlinux.com, @modrinth.com, crawled 8-66 days ago). Direct API 403 from this VM - use the search index, not the API.",
+        "actions": ["search", "read"],
+    },
+    "mastodon": {
+        "muse_first": "browser.search (site:mastodon.social and other instances) for public posts; per-profile RSS feeds exist",
+        "fallback": "none - Agent Reach has no mastodon channel; the public timeline API requires an authenticated user",
+        "login": "none for public posts via search/RSS; instance search and the API need login",
+        "status": "PARTIAL, verified 2026-11-12: search returned real public posts via mastodon.social profiles and RSS feeds, but crawls were stale (28-84 days) and search is instance-by-instance, not global. Public timeline API requires auth.",
+        "actions": ["search", "read"],
+    },
+    "snapchat": {
+        "muse_first": "browser.search for public Spotlight posts on snapchat.com profiles",
+        "fallback": "none - Agent Reach has no snapchat channel",
+        "login": "none for public Spotlight posts via search; stories, lenses and friends need the app/login",
+        "status": "PARTIAL, verified 2026-11-12: search returned real public Spotlight posts on snapchat.com profiles (e.g. @ecosmp Minecraft builds, posted Aug 2026). Stories/lenses/friends need the app.",
+        "actions": ["search", "read"],
+    },
+    "ebay": {
+        "muse_first": "Shopping skill: browser.search (site:ebay.com) for listings; Meta Catalog search may also return eBay listings; live browser product search for the live price",
+        "fallback": "browser.open on a listing URL returned by search (crawled copy is NOT a live price)",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real listings with USD prices, seller feedback and stock (e.g. JBL Vibe Beam $29.90, Sony WF-1000XM6 $177.99, crawled 3-15 days ago). Prices are crawled, not live - verify in the live browser before quoting.",
+        "actions": ["search", "read"],
+    },
+    "aliexpress": {
+        "muse_first": "Shopping skill: browser.search (site:aliexpress.com) for listings; live browser product search for the live price",
+        "fallback": "browser.open on a listing URL returned by search (crawled copy is NOT a live price)",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real listings with USD prices (e.g. Soundcore Life P2 Mini $26.83, Lenovo GM2 Pro $7.80, crawled 2-8 days ago). Prices are crawled, not live - verify in the live browser before quoting.",
+        "actions": ["search", "read"],
+    },
+    "etsy": {
+        "muse_first": "Shopping skill: browser.search (site:etsy.com) for listings; live browser product search for the live price",
+        "fallback": "browser.open on a listing URL returned by search (crawled copy is NOT a live price)",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real handmade listings with prices in USD/EUR/AUD and stock (e.g. JJK cat keychain $11.99, Kacchan phone charm $12.00, crawled 4-25 days ago). Prices are crawled, not live - verify in the live browser before quoting.",
+        "actions": ["search", "read"],
+    },
+    "shopee": {
+        "muse_first": "Shopping skill: browser.search (plain query, NOT site: - the site: operator returned nothing) for Shopee SG listings; live browser product search for the live price",
+        "fallback": "browser.open on a listing URL returned by search (crawled copy is NOT a live price)",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real Shopee SG listings with SGD prices (e.g. Baseus BP1 Pro $28.24 SGD, UGREEN Dots $15.69 SGD, crawled 2-10 days ago). Note: site:shopee.sg returned no results - use a plain query. Prices are crawled, not live.",
+        "actions": ["search", "read"],
+    },
+    "temu": {
+        "muse_first": "Shopping skill: browser.search (site:temu.com) for listings; live browser product search for the live price",
+        "fallback": "browser.open on a listing URL returned by search (crawled copy is NOT a live price)",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "WORKING, verified 2026-11-12: browser.search returned real listings with USD prices (e.g. TWS earbuds $5.97, AI translation earbuds $8.40, crawled 4-27 days ago). Prices are crawled, not live - verify in the live browser before quoting.",
+        "actions": ["search", "read"],
+    },
+    "mercadolibre": {
+        "muse_first": "Shopping skill: browser.search for Mercado Libre listings (plain query in Spanish/Portuguese; site: operator returned nothing)",
+        "fallback": "browser.open on a listing URL returned by search; reseller/aggregator pages (Latinafy, Karma) that mirror Mercado Libre listings",
+        "login": "none for reading; purchase needs the user's own checkout in the live browser",
+        "status": "PARTIAL, verified 2026-11-12: no direct mercadolibre.com results in the search index; listings only surfaced via resellers/aggregators (Latinafy, Karma) with USD prices. Direct site is JS/login-walled in the index. Verify any price in the live browser before quoting.",
+        "actions": ["search", "read"],
+    },
 }
 
 # Channels `exec` is allowed to run, and the agent-reach action it maps to.
@@ -154,7 +252,23 @@ EXEC_REFUSE = {
     "flipkart": "use the Shopping skill: Meta Catalog + live browser product search. Direct fetching is bot-blocked.",
     "reddit": "rate-limited 2026-11-12 (HTTP 429). Use browser.search / social.search; do not retry the agent-reach backend today.",
     "web": "rate-limited 2026-11-12. Use browser.search / browser.open; do not retry the agent-reach backend today.",
+    "tiktok": "no agent-reach backend. Use browser.search (site:tiktok.com); full video/feed needs the app or login.",
+    "threads": "no agent-reach backend. Use social.search (threads); 0 posts returned 2026-11-12, unproven.",
+    "telegram": "no agent-reach backend. Use browser.search (site:t.me) / browser.open on t.me/s/ web-view URLs.",
+    "discord": "no agent-reach backend. Use browser.search for public server listings; messages need a Discord login.",
+    "pinterest": "no agent-reach backend. Use browser.search (site:pinterest.com).",
+    "bluesky": "no agent-reach backend; direct public API 403 from this VM. Use browser.search (site:bsky.app).",
+    "mastodon": "no agent-reach backend; public timeline API needs auth. Use browser.search / per-profile RSS.",
+    "snapchat": "no agent-reach backend. Use browser.search for public Spotlight posts; stories need the app.",
+    "ebay": "use the Shopping skill: browser.search (site:ebay.com) + live browser for the live price. Crawled prices are not live.",
+    "aliexpress": "use the Shopping skill: browser.search (site:aliexpress.com) + live browser for the live price. Crawled prices are not live.",
+    "etsy": "use the Shopping skill: browser.search (site:etsy.com) + live browser for the live price. Crawled prices are not live.",
+    "shopee": "use the Shopping skill: browser.search (plain query, site: returns nothing) + live browser for the live price.",
+    "temu": "use the Shopping skill: browser.search (site:temu.com) + live browser for the live price. Crawled prices are not live.",
+    "mercadolibre": "use the Shopping skill: browser.search (plain Spanish/Portuguese query; site: returns nothing). Direct listings are thin in the index.",
 }
+
+SHOPPING_CHANNELS = {"amazon", "flipkart", "ebay", "aliexpress", "etsy", "shopee", "temu", "mercadolibre"}
 
 STOP_CODES = ["RATE_LIMITED", "PLATFORM_BLOCKED", "NEED_LOGIN", "BUSY"]
 
@@ -269,12 +383,13 @@ def route(channel, action, query, limit):
                        "stop that channel, report what was already obtained, "
                        "do not switch backends to evade, do not loop-retry."),
     }
-    if channel in ("amazon", "flipkart"):
-        result["amazon_rule"] = ("Live price/stock ONLY from a live browser task or "
-                                 "Meta Catalog. A stale browser.open crawl or a curl "
-                                 "HTTP 200 is NOT a live price. Never construct a "
-                                 "product URL; use only URLs returned by search/tools "
-                                 "or supplied by the user.")
+    if channel in SHOPPING_CHANNELS:
+        result["shopping_rule"] = ("Search-index prices are crawled copies (days old), "
+                                   "NOT a live price. Live price/stock ONLY from a live "
+                                   "browser task or Meta Catalog. A stale browser.open "
+                                   "crawl or a curl HTTP 200 is NOT a live price. Never "
+                                   "construct a product URL; use only URLs returned by "
+                                   "search/tools or supplied by the user.")
     return result
 
 

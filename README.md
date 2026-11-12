@@ -1,15 +1,24 @@
-# 🔭 Muse Reach
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-white.png">
+    <img src="assets/banner.png" alt="Muse Reach" width="480">
+  </picture>
+</p>
 
-**Give Muse eyes for the parts of the internet it can't reach on its own.**
+<p align="center"><strong>Give Muse by Meta eyes for the parts of the internet it can't reach on its own.</strong></p>
 
-Read and search YouTube, Reddit, X, GitHub, Bilibili, Instagram, Facebook — and check real Amazon / Flipkart prices — with one router, zero API fees, and no pretending a blocked page is a real result.
+<p align="center">Read and search YouTube, Reddit, X, GitHub, Bilibili, Instagram, Facebook — and check real Amazon / Flipkart prices — with one router, zero API fees, and no pretending a blocked page is a real result.</p>
+
+<p align="center">
+  <img src="assets/logo.png" alt="Muse Reach logo" width="120">
+</p>
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-green.svg)](muse-reach.py)
 [![Read-only](https://img.shields.io/badge/Read--only-no%20posting%2C%20no%20buying-lightgrey.svg)](#safety)
-[![Muse](https://img.shields.io/badge/Built%20for-Muse-purple.svg)](#quick-start)
+[![Built for Muse by Meta](https://img.shields.io/badge/Built%20for-Muse%20by%20Meta-purple.svg)](#quick-start)
 
-> Inspired by [Agent Reach](https://github.com/Panniantong/Agent-Reach) — the idea of one command for every platform, rebuilt from scratch for Muse instead of ported to it. Agent Reach is made for generic CLI agents. Muse Reach is made for Muse: it uses what Muse already has first, and only reaches for Agent Reach when Muse's own tools can't get there.
+> **Muse here means Muse by Meta** — Meta's personal AI agent ([muse.ai](https://muse.ai)). Not any other product called Muse. Inspired by [Agent Reach](https://github.com/Panniantong/Agent-Reach) — the idea of one command for every platform, rebuilt from scratch for Muse instead of ported to it. Agent Reach is made for generic CLI agents. Muse Reach is made for Muse by Meta: it uses what Muse already has first, and only reaches for Agent Reach when Muse's own tools can't get there.
 
 ---
 
@@ -29,7 +38,7 @@ Muse Reach is for the cases Muse's built-in tools struggle with on their own:
 
 ### ✅ Before you start, good to know
 
-- **Which agent?** Muse. The skill (`SKILL.md`) and the router (`muse-reach.py`) are written for it. The router is plain Python, so anyone can read it, but the routes assume Muse's tools.
+- **Which agent?** Muse by Meta. The skill (`SKILL.md`) and the router (`muse-reach.py`) are written for it. The router is plain Python, so anyone can read it, but the routes assume Muse's tools.
 - **Does it touch your browser or accounts?** Only in the ways you approve. Logins happen in a browser window you control, never by Muse typing your password. It never reads your password store, and it never copies a login on its own.
 - **Does it cost anything?** No. No API keys, no paid proxy, no subscription. The optional fallback is the free, open-source Agent Reach CLI.
 - **Is it read-only?** Yes, always. It searches and reads. It never posts, comments, likes, DMs, adds to cart, or buys.
@@ -176,7 +185,7 @@ Say "uninstall Muse Reach". You'll be shown what will be removed — the skill, 
 
 ## Acknowledgements
 
-- [Agent Reach](https://github.com/Panniantong/Agent-Reach) for the original idea: one command, every platform, free. Muse Reach borrows that shape and rebuilds the inside for Muse.
+- [Agent Reach](https://github.com/Panniantong/Agent-Reach) for the original idea: one command, every platform, free. Muse Reach borrows that shape and rebuilds the inside for Muse by Meta.
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp), bili-cli, OpenCLI, Jina Reader, and Exa — the backends Agent Reach assembles, which Muse Reach falls back to where they still work.
 - Muse's own search, page reader, social search, and connectors — the first step of every route here.
 

@@ -33,7 +33,7 @@ CHANNELS = {
         "muse_first": "GitHub connector / `gh` CLI",
         "fallback": "agent-reach github search|read",
         "login": "none for public repos",
-        "status": "working via GitHub connector; CLI not re-tested 2026-11-12",
+        "status": "working, verified 2026-11-12 (github-api search returned live results, incl. JSxtrme/Muse-Reach)",
         "actions": ["search", "read"],
     },
     "youtube": {
@@ -47,84 +47,84 @@ CHANNELS = {
         "muse_first": "browser.search",
         "fallback": "agent-reach bilibili search|read|hot|subtitle (bili-cli)",
         "login": "none; subtitles may need login",
-        "status": "not tested 2026-11-12",
+        "status": "working, verified 2026-11-12 (bili-cli hot returned live trending videos, e.g. BV1hrW367Emp, 3.0M views). Slow/flaky: a later router run hit agent-reach's 30s backend timeout - not blocked, just slow.",
         "actions": ["search", "read", "hot", "subtitle"],
     },
     "v2ex": {
         "muse_first": "browser.search / browser.open",
         "fallback": "agent-reach v2ex hot|node|read|user (v2ex-api)",
         "login": "none",
-        "status": "not tested 2026-11-12",
+        "status": "working, verified 2026-11-12 (v2ex-api hot returned today's topics, e.g. t/1256329, 2026-11-12)",
         "actions": ["hot", "node", "read", "user"],
     },
     "web": {
         "muse_first": "browser.search, then browser.open",
         "fallback": "agent-reach web search|read (Exa/Jina) - USE ONLY IF Muse tools fail",
         "login": "none",
-        "status": "RATE_LIMITED 2026-11-12 (agent-reach backend, wait 3586s hint). Do not retry that backend today; use browser.search/browser.open.",
+        "status": "Muse tools work (browser.search/browser.open verified 2026-11-12). Agent-reach backend RATE_LIMITED 2026-11-12 (wait 3586s hint, pause to ~21:24 IST). Do not retry that backend until the pause expires.",
         "actions": ["search", "read"],
     },
     "xiaohongshu": {
         "muse_first": "browser.search",
         "fallback": "agent-reach xiaohongshu search|read|comments (opencli)",
         "login": "login required for full access; user logs in themselves",
-        "status": "not added / not verified",
+        "status": "BROKEN 2026-11-12: agent-reach browser will not open (browser closed; Chromium reports 'Hatch WebGL domain policy is required'). Muse browser.search returns guides about the platform only, no direct notes.",
         "actions": ["search", "read", "comments"],
     },
     "xueqiu": {
         "muse_first": "browser.search for quotes; finance vertical for stocks",
         "fallback": "agent-reach xueqiu quote|search|hot_posts|hot_stocks",
         "login": "quotes need no login; hot posts/stocks need login",
-        "status": "not added / not verified",
+        "status": "working for quotes, verified 2026-11-12 (AAPL 357.62, +0.63%, via tencent backend, no login). hot_posts/hot_stocks need login, not tested.",
         "actions": ["quote", "search", "hot_posts", "hot_stocks"],
     },
     "boss": {
         "muse_first": "browser.search",
         "fallback": "agent-reach boss search|read",
         "login": "login required; user logs in themselves",
-        "status": "not added / not verified",
+        "status": "BROKEN 2026-11-12: agent-reach browser will not open (both opencli and boss-agent-cli backends, browser closed). Muse browser.search returns background about the platform only, no direct job listings.",
         "actions": ["search", "read"],
     },
     "xiaoyuzhou": {
         "muse_first": "browser.search",
         "fallback": "agent-reach xiaoyuzhou transcribe (Groq Whisper)",
         "login": "none; transcribe needs a Groq key",
-        "status": "not added / not verified",
+        "status": "not verified 2026-11-12: check returned 0/0 actions; transcribe needs a Groq key, none supplied. No test possible without one.",
         "actions": ["transcribe"],
     },
     "linkedin": {
         "muse_first": "browser.search (public job pages only)",
         "fallback": "agent-reach linkedin jobs|read (opencli)",
         "login": "LOGIN-GATED for site search; public job pages readable without login",
-        "status": "login-gated, verified 2026-10-27",
+        "status": "agent-reach browser BROKEN 2026-11-12 (opencli: browser closed). Muse-first works partially: browser.search returned real LinkedIn jobs via SmartRecruiters/Simplify (2026-11-12), not linkedin.com direct; site search still login-gated.",
         "actions": ["jobs", "read"],
     },
     "reddit": {
         "muse_first": "browser.search, then social.search; screenshots from the user as last resort",
         "fallback": "agent-reach reddit search|read|subreddit --backend public-web",
         "login": "public posts need no login; site search may need login",
-        "status": "RATE_LIMITED 2026-11-12 (HTTP 429, public-web/exa). Do not retry today; use browser.search/social.search.",
+        "status": "RATE_LIMITED 2026-11-12 (HTTP 429, public-web/exa, pause to ~21:24 IST). Do not retry the agent-reach backend until the pause expires. Muse browser.search is patchy for direct Reddit posts (site:reddit.com returned no results 2026-11-12); user screenshots remain the fallback.",
         "actions": ["search", "read", "subreddit"],
     },
     "twitter": {
         "muse_first": "social.search, then browser.search",
         "fallback": "agent-reach twitter search|profile|tweets|thread (opencli)",
         "login": "LOGIN-GATED (no x.com session, no ct0 cookie); profile header only via web reader",
-        "status": "login-gated, verified 2026-10-27",
+        "status": "agent-reach browser BROKEN 2026-11-12 (opencli: browser closed). Muse-first works partially: browser.search finds public X posts via the search index (2026-11-12); direct x.com feed still login-gated.",
         "actions": ["search", "profile", "tweets", "thread"],
     },
     "facebook": {
         "muse_first": "Facebook connector (facebook-cli)",
         "fallback": "agent-reach facebook search|profile --backend public-web",
         "login": "login required for full access; user logs in themselves",
-        "status": "public-web search worked 2026-10-27; not re-tested 2026-11-12",
+        "status": "agent-reach browser BROKEN 2026-11-12 (opencli: browser closed). Muse-first WORKS: social.search returned 28 Facebook posts, 2026-11-12.",
         "actions": ["search", "profile"],
     },
     "instagram": {
         "muse_first": "Instagram connector (instagram-cli)",
         "fallback": "agent-reach instagram search|profile|posts (opencli)",
         "login": "LOGIN-GATED",
-        "status": "broken on test 2026-10-27 (Failed to fetch); not re-tested 2026-11-12",
+        "status": "agent-reach browser BROKEN 2026-11-12 (opencli: browser closed, all 3 actions). Muse-first WORKS: social.search returned 49 Instagram posts, 2026-11-12.",
         "actions": ["search", "profile", "posts"],
     },
     "amazon": {
@@ -138,13 +138,16 @@ CHANNELS = {
         "muse_first": "Shopping skill: Meta Catalog search + live browser product search for the live price",
         "fallback": "browser.open on the product page with max_age_minutes (stale cache is NOT a live price)",
         "login": "none for reading; purchase needs the user's own checkout in the live browser",
-        "status": "NEW channel (Agent Reach never had one). Same honest route as amazon; live price/stock ONLY from a live browser task or Meta Catalog. Not live-tested 2026-11-12.",
+        "status": "NEW channel (Agent Reach never had one). Same honest route as amazon; live price/stock ONLY from a live browser task or Meta Catalog. Verified 2026-11-12: Meta Catalog returned a real Flipkart Plus 223 listing (sale Rs 1,199, 3.9 stars, 55,374 reviews); browser.search also returns real Flipkart listings (crawled 2-5 days ago, not live).",
         "actions": ["search", "read"],
     },
 }
 
 # Channels `exec` is allowed to run, and the agent-reach action it maps to.
 EXEC_ALLOW = {"youtube", "github", "bilibili", "v2ex"}
+
+# Actions that take no query (e.g. `hot` lists). exec allows 2 args for these.
+NO_QUERY_ACTIONS = {"hot"}
 # Channels that must never be fetched by this script.
 EXEC_REFUSE = {
     "amazon": "use the Shopping skill: Meta Catalog + live browser product search. Direct fetching is bot-blocked.",
@@ -189,6 +192,29 @@ def _local_check(label, candidates):
     return {"check": label, "ok": found is not None, "path": found or candidates[0]}
 
 
+def _chrome_launch_check():
+    """Try a direct headless Chromium launch (about:blank, 15s). This is what
+    Agent Reach's dedicated browser needs. On 2026-11-12 it fails on this VM
+    with 'Hatch WebGL domain policy is required for browser startup', which
+    is why every opencli channel fails with 'browser closed'. A fail here
+    does not mean Muse's own browser is broken - that runs through its own
+    harness, not a direct launch."""
+    label = "dedicated-browser launch (direct headless Chromium)"
+    try:
+        r = subprocess.run(
+            [os.path.expanduser("~/.local/bin/google-chrome"),
+             "--headless=new", "--disable-gpu", "--dump-dom", "about:blank"],
+            capture_output=True, text=True, timeout=15)
+        ok = r.returncode == 0 and "<html" in r.stdout
+        detail = "launched ok" if ok else (r.stderr.strip().splitlines()[-1]
+                                           if r.stderr.strip() else "no output")
+        return {"check": label, "ok": ok, "path": "direct launch",
+                "detail": detail}
+    except Exception as e:
+        return {"check": label, "ok": False, "path": "direct launch",
+                "detail": f"{type(e).__name__}: {e}"}
+
+
 def cmd_doctor(args):
     """Cheap local checks only. Never hits the network, never retries a
     rate-limited channel, never opens a browser."""
@@ -199,6 +225,7 @@ def cmd_doctor(args):
         _local_check("yt-dlp no-certifi config (egress proxy CA fix)", ["~/.config/yt-dlp/config"]),
         _local_check("yt-dlp binary (bundled with agent-reach)", ["yt-dlp", "~/.local/share/uv/tools/agent-reach/bin/yt-dlp"]),
         _local_check("gh CLI", ["gh"]),
+        _chrome_launch_check(),
     ]
     ok = all(c["ok"] for c in checks)
     _out({
@@ -221,7 +248,7 @@ def route(channel, action, query, limit):
         return {"ok": False, "error": {"code": "BAD_INPUT",
                 "message": f"unknown action {action!r} for channel {channel}",
                 "hint": f"Actions for {channel}: {', '.join(info['actions'])}"}}
-    if not query:
+    if not query and action not in NO_QUERY_ACTIONS:
         return {"ok": False, "error": {"code": "BAD_INPUT",
                 "message": "missing query or URL",
                 "hint": "Pass a search query or a full URL supplied by the user or returned by a search tool. Never construct a URL."}}
@@ -288,9 +315,9 @@ def cmd_exec(args):
                              "message": "--limit needs an integer"}}))
             return 2
         del args[i:i + 2]
-    if len(args) < 3:
+    if len(args) < 3 and not (len(args) == 2 and args[1] in NO_QUERY_ACTIONS):
         print(json.dumps({"ok": False, "error": {"code": "BAD_INPUT",
-                         "message": "usage: muse-reach.py exec <channel> <action> <query-or-url> [--limit N]"}}))
+                         "message": "usage: muse-reach.py exec <channel> <action> <query-or-url> [--limit N] (no query needed for: hot)"}}))
         return 2
     channel, action = args[0], args[1]
     query = " ".join(args[2:])
@@ -313,7 +340,8 @@ def cmd_exec(args):
                          "message": "agent-reach binary not found; add ~/.local/bin to PATH"}}))
         return 2
     # No shell=True, allowlisted channel/action only, bounded timeout.
-    cmd = [agent_reach, channel, action, query, "--limit", str(limit)]
+    # No-query actions (hot) get no query argument at all - passing "" breaks the CLI.
+    cmd = [agent_reach, channel, action] + ([query] if query else []) + ["--limit", str(limit)]
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     except subprocess.TimeoutExpired:

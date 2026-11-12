@@ -59,10 +59,20 @@ Muse-native first, Agent Reach only as fallback. Public content first with Muse'
 - yt-dlp defaults to its certifi bundle, which misses this VM's egress proxy CA. The fix is `~/.config/yt-dlp/config` containing `--compat-options no-certifi`, so it uses system certs. Never use `--no-check-certificates`.
 - CloakBrowser download fails on this VM, so Agent Reach falls back to Muse's Chromium with a dedicated profile.
 
-## Status, verified 2026-11-12
+## Status, verified 2026-11-12 (retest evening, ~21:00-21:15 IST)
 
 - youtube works (yt-dlp search returned live results).
-- reddit search via public-web failed with HTTP 429 rate limit. web read via Agent Reach failed rate-limited with a 3586 second wait hint. Do not retry either backend that day.
+- github works (github-api search returned live results, incl. JSxtrme/Muse-Reach).
+- bilibili works (bili-cli hot returned live trending videos; slow — one router run hit the 30s backend timeout).
+- v2ex works (v2ex-api hot returned today's topics).
+- xueqiu quotes work (AAPL 357.62, +0.63%, tencent backend, no login). hot_posts/hot_stocks need login, not tested.
+- reddit search via public-web failed with HTTP 429 rate limit. web read via Agent Reach failed rate-limited with a 3586 second wait hint. Do not retry either backend until the pause expires (~21:24 IST). Muse browser.search is patchy for direct Reddit posts.
 - browser.open on an amazon.in product page returned a 344-day-old crawl with no price. curl to amazon.in returned HTTP 200 but 3793 bytes, a bot-check shell.
-- X/Twitter, LinkedIn jobs and Instagram are login-gated or broken. Do not claim they work until a live test passes.
-- bilibili, v2ex, xiaohongshu, xueqiu, boss and xiaoyuzhou were not live-tested 2026-11-12. Their status in `channels` says so.
+- flipkart works via Meta Catalog (real Flipkart Plus 223 listing, sale Rs 1,199, 3.9 stars, 55,374 reviews). Browser.search also returns real Flipkart listings, crawled 2-5 days ago, not live.
+- **Agent Reach's dedicated browser is broken 2026-11-12**: every opencli channel (twitter, facebook, instagram, linkedin, boss, xiaohongshu) fails with `the Agent Reach browser did not open: browser closed`. Root cause: a direct Chromium launch now exits with `Hatch WebGL domain policy is required for browser startup`. `doctor` now checks this and reports it. Muse's own browser is unaffected.
+- facebook and instagram work Muse-first: social.search returned 28 Facebook and 49 Instagram posts on 2026-11-12.
+- linkedin works partially Muse-first: browser.search returns real LinkedIn jobs via SmartRecruiters/Simplify, not linkedin.com direct.
+- twitter/X works partially Muse-first: browser.search finds public X posts via the search index; the direct feed is still login-gated.
+- xiaohongshu and boss do not work for direct notes/jobs: browser broken, and Muse search returns background about the platforms only.
+- xiaoyuzhou not verified: transcribe needs a Groq key, none supplied (check returned 0/0 actions).
+- Router fix: `exec` now accepts no-query actions (`hot`) — it previously required a query and returned BAD_INPUT. `route` matches.

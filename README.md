@@ -51,22 +51,22 @@ This is the current picture, checked 2026-11-12. Statuses change — platforms c
 
 | Channel | What you can do | Needs | Status |
 | --- | --- | --- | --- |
-| github | Search repos, read a repo / README, read an issue or PR with comments | Nothing for public repos | ✔ Working, verified 2026-11-12 |
-| youtube | Search videos, read a video, get subtitles, transcribe audio | Nothing for public videos; transcription needs a Groq / OpenAI key | ✔ Working, verified 2026-11-12 |
-| bilibili | Search videos, read a video, trending, subtitles | Nothing; subtitles may need login | ✔ Working, verified 2026-11-12 (slow — one router run hit the 30s backend timeout) |
-| v2ex | Trending topics, a node, a topic with replies, a user | Nothing | ✔ Working, verified 2026-11-12 |
-| web | Search the web, read a page as clean text | Nothing | ✔ Muse tools work; Agent Reach backend rate-limited (pause to ~21:24 IST, 2026-11-12) |
-| xiaohongshu | Search notes, read a note, read comments | Login | ✘ Agent Reach browser broken 2026-11-12 — Muse search gives background only, no direct notes |
-| xueqiu | Live stock quotes, search stocks, trending posts / stocks | Quotes need no login; trending needs login | ✔ Quotes working, verified 2026-11-12 (AAPL 357.62); trending needs login, not tested |
-| boss | Search jobs, read a job description | Login | ✘ Agent Reach browser broken 2026-11-12 (both backends) — no direct job listings |
-| xiaoyuzhou | Transcribe a podcast episode | Groq key | ⏸ Not verified — transcribe needs a Groq key, none supplied |
-| linkedin | Search jobs, read a job description | Public jobs need no login; site search needs login | ⚠ Agent Reach browser broken 2026-11-12; Muse search returns real LinkedIn jobs via SmartRecruiters / Simplify |
-| reddit | Search posts, read a post with top comments, latest in a subreddit | Nothing for public posts | ⚠ Rate-limited 2026-11-12 (HTTP 429, pause to ~21:24 IST); Muse search patchy for direct posts — user screenshots remain the fallback |
-| twitter / X | Search tweets, a profile, a user's tweets, a thread with replies | Login | ⚠ Agent Reach browser broken 2026-11-12; Muse search finds public X posts via the search index |
-| facebook | Search, a page / profile | Login for full access | ✔ Muse-first works — social.search returned 28 posts, 2026-11-12 (Agent Reach browser broken) |
-| instagram | Search users, a profile, a user's posts | Login | ✔ Muse-first works — social.search returned 49 posts, 2026-11-12 (Agent Reach browser broken) |
+| github | Search repos, read a repo / README, read an issue or PR with comments | Nothing for public repos | ✔&#xFE0E; Working, verified 2026-11-12 |
+| youtube | Search videos, read a video, get subtitles, transcribe audio | Nothing for public videos; transcription needs a Groq / OpenAI key | ✔&#xFE0E; Working, verified 2026-11-12 |
+| bilibili | Search videos, read a video, trending, subtitles | Nothing; subtitles may need login | ✔&#xFE0E; Working, verified 2026-11-12 (slow — one router run hit the 30s backend timeout) |
+| v2ex | Trending topics, a node, a topic with replies, a user | Nothing | ✔&#xFE0E; Working, verified 2026-11-12 |
+| web | Search the web, read a page as clean text | Nothing | ✔&#xFE0E; Muse tools work; Agent Reach backend rate-limited (pause to ~21:24 IST, 2026-11-12) |
+| xiaohongshu | Search notes, read a note, read comments | Login | ✘&#xFE0E; Agent Reach browser broken 2026-11-12 — Muse search gives background only, no direct notes |
+| xueqiu | Live stock quotes, search stocks, trending posts / stocks | Quotes need no login; trending needs login | ✔&#xFE0E; Quotes working, verified 2026-11-12 (AAPL 357.62); trending needs login, not tested |
+| boss | Search jobs, read a job description | Login | ✘&#xFE0E; Agent Reach browser broken 2026-11-12 (both backends) — no direct job listings |
+| xiaoyuzhou | Transcribe a podcast episode | Groq key | ⏸&#xFE0E; Not verified — transcribe needs a Groq key, none supplied |
+| linkedin | Search jobs, read a job description | Public jobs need no login; site search needs login | ⚠&#xFE0E; Agent Reach browser broken 2026-11-12; Muse search returns real LinkedIn jobs via SmartRecruiters / Simplify |
+| reddit | Search posts, read a post with top comments, latest in a subreddit | Nothing for public posts | ⚠&#xFE0E; Rate-limited 2026-11-12 (HTTP 429, pause to ~21:24 IST); Muse search patchy for direct posts — user screenshots remain the fallback |
+| twitter / X | Search tweets, a profile, a user's tweets, a thread with replies | Login | ⚠&#xFE0E; Agent Reach browser broken 2026-11-12; Muse search finds public X posts via the search index |
+| facebook | Search, a page / profile | Login for full access | ✔&#xFE0E; Muse-first works — social.search returned 28 posts, 2026-11-12 (Agent Reach browser broken) |
+| instagram | Search users, a profile, a user's posts | Login | ✔&#xFE0E; Muse-first works — social.search returned 49 posts, 2026-11-12 (Agent Reach browser broken) |
 | amazon | Search products, read a product page | Nothing to read; buying needs your own checkout | **New** — live price only from live browser / catalog |
-| flipkart | Search products, read a product page | Nothing to read; buying needs your own checkout | **New** — ✔ catalog verified 2026-11-12 (real Flipkart listing, sale ₹1,199) |
+| flipkart | Search products, read a product page | Nothing to read; buying needs your own checkout | **New** — ✔&#xFE0E; catalog verified 2026-11-12 (real Flipkart listing, sale ₹1,199) |
 
 - **Working** means a live test passed. **Not tested** means the route exists but no live test was run that day — don't assume it works until one passes. **Login-gated** means the site itself demands a session Muse doesn't have. **Rate-limited** means the backend asked us to wait, and we do.
 

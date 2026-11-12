@@ -108,3 +108,10 @@ Owner asked for more social media platforms and more international shopping site
 
 - 14 new entries in CHANNELS, all with `fallback: "none - Agent Reach has no <channel> channel"` and `exec` refused via EXEC_REFUSE (verified: `exec temu search "earbuds"` exits 3 with a Shopping-skill hint).
 - Two `},,` typos introduced by the edit script (CHANNELS and EXEC_REFUSE) — caught by `py_compile`, fixed, recompiled clean. `channels --json` now lists 30 channels; `route bluesky search "Minecraft"` returns the correct Muse-first route.
+
+## v0.2.1 — tagline image, light/dark switching, duplicate logo removed (2026-11-12 ~23:00 IST)
+
+- Owner pointed out the second standalone logo below the intro was pointless — the logo is already in the banner. Removed it.
+- Supplied tagline image "GIVE MUSE IT'S OWN EYES" (Futuristic_White_Typographic_Banner.png, 2172x724, white on transparent) cropped tight to its alpha bbox + 24px padding (2145x613) and saved as `assets/tagline.png`. A black twin with the same alpha was made for light mode (`assets/tagline-black.png`). Both verified visually on black and white composites — clean, no specks.
+- README now shows the tagline in place of the second logo, via `<picture>`: dark mode gets the white tagline, light mode gets the black one. The banner logo already switched correctly (dark -> banner-white.png, light -> banner.png) — verified, unchanged.
+- New Changelog section at the top of the README: v0.2.0 entry carries the last update's commit message, v0.2.1 changelog below it.

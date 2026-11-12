@@ -11,8 +11,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.png">
-    <img src="assets/logo.png" alt="Muse Reach logo" width="120">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tagline.png">
+    <img src="assets/tagline-black.png" alt="Give Muse its own eyes" width="600">
   </picture>
 </p>
 
@@ -22,6 +22,22 @@
 [![Built for Muse by Meta](https://img.shields.io/badge/Built%20for-Muse%20by%20Meta-purple.svg)](#quick-start)
 
 > **Muse here means Muse by Meta** — Meta's personal AI agent ([muse.ai](https://muse.ai)). Not any other product called Muse. Inspired by [Agent Reach](https://github.com/Panniantong/Agent-Reach) — the idea of one command for every platform, rebuilt from scratch for Muse instead of ported to it. Agent Reach is made for generic CLI agents. Muse Reach is made for Muse by Meta: it uses what Muse already has first, and only reaches for Agent Reach when Muse's own tools can't get there.
+
+---
+
+## Changelog
+
+### v0.2.0 — 14 new Muse-first-only channels (tiktok, threads, telegram, discord, pinterest, bluesky, mastodon, snapchat, ebay, aliexpress, etsy, shopee, temu, mercadolibre)
+
+- 30 channels total. All 14 are Muse-first-only — Agent Reach never had them, and each one was live-tested before being listed.
+- Working: telegram, pinterest, bluesky, ebay, aliexpress, etsy, shopee, temu. Partial: tiktok, discord, mastodon, snapchat, mercadolibre. Unproven: threads (social search returned 0 posts).
+- The router refuses to fetch any of the 14 itself — it prints the Muse route instead. Router is v0.2.0; the shopping route key is now `shopping_rule`, covering all 8 shopping channels.
+
+### v0.2.1 — Tagline image, light/dark switching, duplicate logo removed
+
+- Removed the second standalone logo below the intro — the logo is already in the banner above it.
+- Added the "GIVE MUSE IT'S OWN EYES" tagline image in its place. White in dark mode, black in light mode.
+- The banner logo already switched correctly (white in dark mode, black in light mode) — verified, unchanged.
 
 ---
 

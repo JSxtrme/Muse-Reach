@@ -8,6 +8,8 @@ Logo and banner for Muse Reach, supplied by the project owner (JS).
 - `banner-white.png` — same banner in white, for dark mode (the README switches with `prefers-color-scheme`).
 - `logo-with-text.png` — icon stacked above "MUSE REACH", black on transparent.
 - `logo-with-text-white.png` — same stacked version in white.
+- `tagline.png` — "GIVE MUSE IT'S OWN EYES" in white on transparent, cropped tight. Used below the intro in the README (dark mode).
+- `tagline-black.png` — same tagline in black, for light mode (the README switches with `prefers-color-scheme`).
 
 The black versions disappear on a dark background, which is why every
 asset has a white twin. Don't recolour or redraw the mark — if a new

@@ -1,0 +1,19 @@
+# muse-reach .gitignore — nothing personal or credentialed is ever committed.
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
+
+# Browser profiles, sessions, cookies, logins — never in the repo.
+/profile/
+*.cookies
+*.session
+*credentials*
+*.key
+*.pem
+.env
+.env.*
+!.env.example
